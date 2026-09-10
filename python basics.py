@@ -56,47 +56,76 @@ clothing.display()
 # 7. Try / Except
 # try runs code that might cause an error.
 # except handles the error instead of stopping the program.
-try:
-    quantity = int(input("Enter quantity: "))
-    print("Quantity:", quantity)
-except ValueError:
-    print("Please enter a number.")
 
 
 # 8. Clothing Inventory Manager
-# This class manages clothing and their quantities.
+# The dictionary is the single source of truth for the inventory.
 class ClothingInventoryManager:
 
-    # Create an empty dictionary when the manager starts.
     def __init__(self):
         self.quantities = {}
 
-    # Add clothing and its quantity to the dictionary.
+    # Add clothing and quantity to the dictionary.
     def add_clothing(self, name, quantity):
+        self.quantities[name] = quantity
+
+    # Save the inventory by rewriting the file.
+    def save_clothes(self):
+        with open("clothes.txt", "w") as file:
+            for clothing, quantity in self.quantities.items():
+                file.write(f"{clothing},{quantity}\n")
+
+    # Load the inventory from the file.
+    def load_clothes(self):
         try:
-            # Convert the quantity into an integer.
-            quantity = int(quantity)
+            with open("clothes.txt", "r") as file:
+                for line in file:
+                    line = line.strip()
 
-            # Store the clothing name and quantity.
-            self.quantities[name] = quantity
+                    if line:
+                        clothing, quantity = line.rsplit(",", 1)
+                        self.add_clothing(clothing, int(quantity))
 
-        except ValueError:
-            # Display an error if the quantity is not a number.
-            print("Quantity must be a number.")
+        except FileNotFoundError:
+            pass
 
-    # Display all clothing and their quantities.
+    # Display all clothing and quantities.
     def display_clothes(self):
         for clothing, quantity in self.quantities.items():
             print(clothing, quantity)
 
+    # Get clothing name and quantity from the user.
+    def run(self):
+        self.load_clothes()
 
-# Create a Clothing Inventory Manager object.
+        name = input("Enter clothing name: ").strip()
+
+        while True:
+            quantity = input("Enter quantity: ").strip()
+# Try / Except
+# try runs code that might cause an error.
+# except handles the error instead of stopping the program.
+            try:
+                quantity = int(quantity)
+
+                if quantity < 0:
+                    print("Quantity cannot be negative.")
+                    continue
+
+                break
+
+            except ValueError:
+                print("Please enter a number.")
+
+        self.add_clothing(name, quantity)
+        self.save_clothes()
+
+        print("\nClothing Inventory:")
+        self.display_clothes()
+
+
+# Create the inventory manager.
 manager = ClothingInventoryManager()
 
-# Add clothing to the inventory.
-manager.add_clothing("trousers", 2)
-manager.add_clothing("shorts", 4)
-manager.add_clothing("shirts", 3)
-
-# Display the inventory.
-manager.display_clothes()
+# Start the program.
+manager.run()

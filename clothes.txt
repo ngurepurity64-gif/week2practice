@@ -1,0 +1,5 @@
+black trousers,2
+blue jeans,5
+red dress,4
+white official shirts,6
+black belts,5
