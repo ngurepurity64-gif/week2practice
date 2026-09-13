@@ -35,21 +35,13 @@ Java Concepts Practiced
 - File handling
 - User input using "Scanner"
 
-How to Run the Java Version
+### Java Version Status
 
-1. Clone the repository.
-2. Open the project in IntelliJ IDEA.
-3. Open the "src" folder.
-4. Open "ClothingInventorymanager.java".
-5. Run the "ClothingInventorymanager" class.
-6. Choose an option from the menu:
-   - "1" — Add Clothing
-   - "2" — View Clothes
-   - "3" — Exit
-7. Enter the clothing name and quantity when prompted.
+The Java version was developed in the previous week as the original Clothing Inventory Manager.
 
-The Java version uses "clothes.txt" for file storage.
+The Java source code is maintained in the Week 1 project. This Week 2 repository contains the Python rewrite of the application.
 
+## Python Version
 Python Version
 
 The Python version is a console application that uses a dictionary as the single source of truth for clothing items and their quantities.
