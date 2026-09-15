@@ -106,3 +106,20 @@ Possible future features include:
 - Customer accounts
 - Shopping cart
 - Clothing recommendationgit log --oneline -5
+
+## Week 3 Progress
+
+### Monday
+- Installed PostgreSQL.
+- Configured PostgreSQL locally.
+- Installed the PostgreSQL extension in VS Code.
+- Verified the PostgreSQL connection.
+
+### Tuesday
+- Ported the database schema to PostgreSQL.
+- Changed primary keys to `GENERATED ALWAYS AS IDENTITY`.
+- Added `unit_price` to `OrderItems`.
+- Created the `clothingstore` database.
+- Created the four tables: `Clothes`, `Customers`, `Orders`, and `OrderItems`.
+- Inserted sample data.
+- Practiced SELECT queries using an INNER JOIN between `Orders` and `OrderItems`.
